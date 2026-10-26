@@ -10,16 +10,14 @@ target_date = f"{target_event_year}-{target_event_month}-{target_event_day}"
 
 #count days left
 def get_days_from_today(date):
-    now = datetime.today()
-
     try:
-        planned_date = datetime.strptime(date, "%Y-%m-%d")
+        planned_date = datetime.strptime(date, "%Y-%m-%d").date()
     except ValueError:
         print("Invalid date format. Please use YYYY-MM-DD.")
         return None
 
-    days_left = (planned_date - now).days
+    today = datetime.today().date()
 
-    return days_left
+    return (today - planned_date).days
 
 print("Days left:", get_days_from_today(target_date))
